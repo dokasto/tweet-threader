@@ -1,2 +1,2 @@
-# tweet-threader
-An app that helps to create twitter threads.
+# Tweet-threader
+Create threads on Twitter easily.

@@ -1,7 +1,7 @@
 {
   "name": "tweet-threader",
   "version": "1.0.0",
-  "description": "An app to help create twitter threads.",
+  "description": "Create threads on Twitter easily.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
