@@ -23,10 +23,11 @@ if (env !== 'production') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('./public/webpack/dev.js');
+  const config = require('./public/webpack/config.dev.js');
   const compiler = webpack(config);
 
   app.use(webpackDevMiddleware(compiler, {
+    historyApiFallback: true,
     hot: true,
     noInfo: true,
     publicPath: config.output.publicPath,
@@ -43,5 +44,5 @@ app.get('/*', (request, response) => {
 
 // start server
 app.listen(port, () => {
-  console.log('Tweet-threader server running on ' + port);
+  console.log(`Tweet-threader server running on http://localhost:${port} in ${env} mode`);
 });
