@@ -9,7 +9,7 @@ module.exports = {
 
   entry: {
     app: [
-      'webpack/hot/dev-server',
+      'react-hot-loader/patch',
       'webpack-hot-middleware/client',
       path.resolve(__dirname, '..', 'app/index.jsx'),
     ],
@@ -28,6 +28,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"development"',
@@ -39,7 +40,7 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['babel-loader', 'react-hot-loader/webpack', 'babel?presets[]=react,presets[]=es2015,presets[]=react-hmre', ], },
+      { test: /\.jsx?$/, exclude: /(node_modules|server)/, loaders: ['babel'] },
       { test: /\.json$/, loader: 'json' },
       { test: /\.scss$/, loader: 'style!css!sass' },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=100000' },
