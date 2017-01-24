@@ -1,0 +1,41 @@
+/**
+ * Main scss file
+ * All imports are centralized here
+ */
+
+
+/**
+ * NPM packages
+ */
+
+@import "../../node_modules/normalize-css/normalize.css";
+
+/**
+ * Base
+ */
+
+@import "base/_variables.scss";
+@import "base/_mixins.scss";
+@import "base/_base.scss";
+
+/**
+ * Layouts
+ */
+
+@import "layout/_grid.scss";
+@import "layout/_header.scss";
+@import "layout/_content.scss";
+@import "layout/_footer.scss";
+
+/**
+ * States
+ */
+
+@import "_states.scss";
+
+/**
+ * Modules
+ */
+
+@import "modules/_buttons.scss";
+@import "modules/_forms.scss";
