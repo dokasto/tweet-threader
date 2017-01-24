@@ -1,7 +1,8 @@
 'use strict';
 
-const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PATHS = require('./constants');
 
 module.exports = {
 
@@ -11,19 +12,20 @@ module.exports = {
     app: [
       'react-hot-loader/patch',
       'webpack-hot-middleware/client',
-      path.resolve(__dirname, '..', 'app/index.jsx'),
+      PATHS.app,
     ],
     vendor: [
       'react',
       'react-dom',
-      'redux',
-      /* add css vendors here*/
+      'redux'
     ],
+    style: PATHS.style
   },
 
   output: {
-    path: path.resolve(__dirname, '..', 'public/build'),
-    filename: 'bundle.js',
+    path: PATHS.build,
+    filename: '[name].js',
+    chunkFilename: '[id].js',
     publicPath: '/build',
   },
 
@@ -35,16 +37,17 @@ module.exports = {
       },
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new ExtractTextPlugin('[name].css')
   ],
 
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /(node_modules|server)/, loaders: ['babel'] },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.scss$/, loader: 'style!css!sass' },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader') },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=100000' },
       { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url?limit=100000' },
     ],
-  },
+  }
 };

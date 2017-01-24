@@ -1,17 +1,31 @@
 'use strict';
 
-const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PATHS = require('./constants');
 
 module.exports = {
 
-  entry: [
-    path.resolve(__dirname, '..', 'app/index.jsx'),
-  ],
+  devtool: 'inline-cheap-source-map',
+
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
+      PATHS.app,
+    ],
+    vendor: [
+      'react',
+      'react-dom',
+      'redux'
+    ],
+    style: PATHS.style
+  },
 
   output: {
-    path: path.resolve(__dirname, '..', 'public/build'),
-    filename: 'bundle.js',
+    path: PATHS.build,
+    filename: '[name].js',
+    chunkFilename: '[id].js',
     publicPath: '/build',
   },
 
@@ -29,21 +43,18 @@ module.exports = {
       },
     }),
     new webpack.IgnorePlugin(new RegExp('^(fs|ipc)$')),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new ExtractTextPlugin('[name].css')
   ],
 
   module: {
-    loaders: [{
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react'],
-        },
-      },
+    loaders: [
+      { test: /\.jsx?$/, exclude: /(node_modules|server)/, loaders: ['babel'] },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.scss$/, loader: 'style!css!sass' },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader') },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=100000' },
       { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url?limit=100000' },
     ],
-  },
+  }
 };
