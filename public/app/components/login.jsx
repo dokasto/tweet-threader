@@ -3,9 +3,10 @@
 import React from 'react';
 
 const Login = () => (
-  <div>
-    Work bitches ad
+  <div className="login-page">
+  	<h2>Tweet-threader</h2>
+    <button>Login with Twitter</button>
   </div>
-)
+);
 
 export default Login;

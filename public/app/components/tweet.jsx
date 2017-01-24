@@ -12,7 +12,7 @@ class Tweet extends React.Component {
   render() {
     return (
       <div>
-      	Tweet page here
+      	Tweet page right here
       </div>
     )
   }
