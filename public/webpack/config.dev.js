@@ -17,7 +17,9 @@ module.exports = {
     vendor: [
       'react',
       'react-dom',
-      'redux'
+      'redux',
+      'react-router',
+      'react-redux'
     ],
     style: PATHS.style
   },
@@ -38,14 +40,15 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-    new ExtractTextPlugin('[name].css')
+    new ExtractTextPlugin('[name].css', { allChunks: true })
   ],
 
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /(node_modules|server)/, loaders: ['babel'] },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader') },
+      { test: /\.css$/, exclude: /node_modules/, loaders: ['style', 'css'] },
+      { test: /\.scss$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style-loader', 'css!sass?sourceMap') },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=100000' },
       { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url?limit=100000' },
     ],

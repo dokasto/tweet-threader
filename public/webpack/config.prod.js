@@ -37,22 +37,22 @@ module.exports = {
       'global.Object.prototype': {},
       'global.GENTLY': false,
     }),
+    new webpack.IgnorePlugin(new RegExp('^(fs|ipc)$')),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new ExtractTextPlugin('[name].css', { allChunks: true }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
       },
-    }),
-    new webpack.IgnorePlugin(new RegExp('^(fs|ipc)$')),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-    new ExtractTextPlugin('[name].css')
+    })
   ],
 
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /(node_modules|server)/, loaders: ['babel'] },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader') },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style-loader', 'css!sass?sourceMap') },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=100000' },
       { test: /.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url?limit=100000' },
     ],
