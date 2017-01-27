@@ -11,8 +11,27 @@ class Tweet extends React.Component {
 
   render() {
     return (
-      <div>
-      	Tweet page right here
+      <div className="tweet-page">
+      	<section className="container">
+          <div className="header">
+            <h2 className="logo">Tweet-threader</h2>
+            <aside>
+              <picture>
+                <img src="https://pbs.twimg.com/profile_images/824632173223354368/lI8LjsBs_bigger.jpg" />
+              </picture>
+              <div>
+                <span className="fullname">Udo Nkwocha</span>
+                <label className="username">@thisisudo</label>
+              </div>
+              <div className="clear"></div>
+            </aside>
+            <div className="clear"></div>
+          </div>
+          <div className="progress">
+            Fixed progress bar
+          </div>
+
+        </section>
       </div>
     )
   }

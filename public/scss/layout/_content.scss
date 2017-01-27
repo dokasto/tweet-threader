@@ -34,3 +34,75 @@
     margin-top: 2.5em;
   }
 }
+
+
+/**
+ * Tweet page
+ */
+
+.tweet-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  background-color: $abbey;
+  min-height: 100vh;
+  .container {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 35rem;
+    margin: 0.5em auto;
+    background-color: #222426;
+    .header {
+      background-color: #292F33;
+      padding: 0.6rem;
+      border-radius: 4px 4px 0 0;
+      .logo {
+        font-weight: 600;
+        font-size: 1.2rem;
+        letter-spacing: 0.05rem;
+        display: inline-block;
+        margin-bottom: 0.60rem;
+      }
+      aside {
+        display: block;
+        float: right;
+        width: 100%;
+        max-width: 200px;
+        div {
+          float: right;
+          overflow: hidden;
+          * {
+            display: block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: right;
+          }
+          .fullname {
+            font-size: 0.9em;
+            color: #F5F8FA;
+          }
+          .username {
+            color: #8899A6;
+            font-size: 0.8em;
+            margin-top: 0.4em;
+          }
+        }
+        picture {
+          float: right;
+          width: 36px;
+          height: 36px;
+          border-radius: 4px;
+          margin-left: 0.5rem;
+          img {
+            border-radius: inherit;
+            width: inherit;
+            height: inherit;
+          }
+        }
+      }
+    }
+  }
+}

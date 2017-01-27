@@ -20,7 +20,7 @@ export default class Root extends React.Component {
   render() {
     return (
       <Provider store={this.props.store}>
-		  	{ isProduction ? <Routes /> : <div><Routes /><DevTools /></div> }
+		  	{ isProduction ? <Routes /> : <div><Routes />{/*<DevTools />*/}</div> }
 		  </Provider>
     );
   }
