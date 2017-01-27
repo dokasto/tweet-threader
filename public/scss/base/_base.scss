@@ -1,4 +1,14 @@
 body {
-  background: $twitter-dark-blue;
-  color: red;
+  color: $white;
+  background-color: transparent;
+  font-size: $base-font-size;
+  font-family: sans-serif;
+}
+
+.logo {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  margin: 0;
 }

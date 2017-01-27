@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import DevTools from './devtools.jsx';
 import Routes from '../components/routes.jsx';
+
+// SCSS styles
 import '../../scss/main.scss';
 
 let isProduction = (process.env.NODE_ENV === 'production') ? true : false;

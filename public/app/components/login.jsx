@@ -4,8 +4,11 @@ import React from 'react';
 
 const Login = () => (
   <div className="login-page">
-  	<h2>Tweet-threader</h2>
-    <button>Login with Twitter</button>
+  	<section>
+			<h1 className="logo">Tweet-threader</h1>
+			<p>Easily create threads on Twitter.</p>
+    	<button className="button">Login with Twitter</button>
+  	</section>
   </div>
 );
 
