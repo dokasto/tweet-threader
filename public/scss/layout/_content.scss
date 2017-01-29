@@ -54,7 +54,6 @@
     width: 100%;
     max-width: 35rem;
     margin: 0.5em auto;
-    background-color: #222426;
     .header {
       background-color: #292F33;
       padding: 0.6rem;
@@ -104,5 +103,14 @@
         }
       }
     }
+    .progress {
+      position: sticky;
+      padding: 0.5rem;
+      text-align: right;
+    }
+  }
+  .tweet-forms {
+    position: relative;
+    border: 1px solid red;
   }
 }

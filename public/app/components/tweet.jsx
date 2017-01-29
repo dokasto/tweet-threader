@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { render } from 'react-dom';
+import Form from '../containers/form.jsx';
 
 class Tweet extends React.Component {
 
@@ -28,9 +29,11 @@ class Tweet extends React.Component {
             <div className="clear"></div>
           </div>
           <div className="progress">
-            Fixed progress bar
+            <button className="button" type="submit">Post</button>
           </div>
-
+          <div className="tweet-forms">
+            <Form />
+          </div>
         </section>
       </div>
     )
