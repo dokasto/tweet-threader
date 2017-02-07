@@ -12,8 +12,7 @@ class Form extends React.Component {
   }
 
   _handleCount(e) {
-    let charsLength = e.target.value.length;
-    console.log(charsLength);
+    const charsLength = e.target.value.length;
     if (charsLength < 141) {
       this.setState({ charCount: 140 - charsLength });
     }

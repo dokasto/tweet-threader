@@ -8,12 +8,22 @@ class Tweet extends React.Component {
 
   constructor() {
     super();
+    this._incrementForms = this._incrementForms.bind(this);
+    this._counter = 0;
+    this.state = { forms: [this._counter] };
+  }
+
+  _incrementForms(e) {
+    e.preventDefault();
+    let forms = this.state.forms;
+    forms.push(this._counter++);
+    this.setState({ forms: forms });
   }
 
   render() {
     return (
       <div className="tweet-page">
-      	<section className="container">
+        <section className="container">
           <div className="header">
             <h2 className="logo">Tweet-threader</h2>
             <aside>
@@ -32,7 +42,12 @@ class Tweet extends React.Component {
             <button className="button" type="submit">Post</button>
           </div>
           <div className="tweet-forms">
-            <Form />
+            <div>
+              { this.state.forms.map((val, index) => <Form key={index} /> ) }
+            </div>
+            <div className="form-control">
+              <button onClick={this._incrementForms} className="button">+ Thread</button>
+            </div>
           </div>
         </section>
       </div>
