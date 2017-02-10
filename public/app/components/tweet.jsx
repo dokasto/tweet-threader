@@ -8,12 +8,11 @@ class Tweet extends React.Component {
 
   constructor() {
     super();
-    this._incrementForms = this._incrementForms.bind(this);
     this._counter = 0;
     this.state = { forms: [this._counter] };
   }
 
-  _incrementForms(e) {
+  _incrementForms = (e) => {
     e.preventDefault();
     let forms = this.state.forms;
     forms.push(this._counter++);

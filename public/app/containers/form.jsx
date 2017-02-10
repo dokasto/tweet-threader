@@ -8,10 +8,9 @@ class Form extends React.Component {
   constructor() {
     super();
     this.state = { charCount: 140 };
-    this._handleCount = this._handleCount.bind(this);
   }
 
-  _handleCount(e) {
+  _handleCount = (e) => {
     const charsLength = e.target.value.length;
     if (charsLength < 141) {
       this.setState({ charCount: 140 - charsLength });
