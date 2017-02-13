@@ -17,11 +17,16 @@ class Form extends React.Component {
     }
   }
 
+  _removeForm = (e) => {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <form className="form">
       	<textarea onKeyUp={this._handleCount} maxLength="140"></textarea>
       	<span className="counter">{this.state.charCount}</span>
+        <a className="remove" onClick={this._removeForm}>remove</a>
       </form>
     )
   }
