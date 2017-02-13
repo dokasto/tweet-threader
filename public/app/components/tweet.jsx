@@ -8,8 +8,8 @@ class Tweet extends React.Component {
 
   constructor() {
     super();
-    this._counter = 0;
-    this.state = { forms: [this._counter] };
+    this._formSet = new Set();
+    this.state = { forms: this._formSet };
   }
 
   _incrementForms = (e) => {
@@ -17,6 +17,10 @@ class Tweet extends React.Component {
     let forms = this.state.forms;
     forms.push(this._counter++);
     this.setState({ forms: forms });
+  }
+
+  _decrementForms = (e) => {
+
   }
 
   render() {
@@ -42,6 +46,7 @@ class Tweet extends React.Component {
           </div>
           <div className="tweet-forms">
             <div>
+              { for (let form of formSet) }
               { this.state.forms.map((val, index) => <Form key={index} /> ) }
             </div>
             <div className="form-control">
