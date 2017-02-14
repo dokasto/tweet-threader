@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import Form from '../containers/form.jsx';
 
 let formSet = new Set();
@@ -25,6 +25,19 @@ class Tweet extends React.Component {
     this.setState({forms: formSet});
   }
 
+  _handlePostClick = (e) => {
+    e.preventDefault();
+    let posts = [];
+    Array.from(formSet).forEach((id) => {
+      posts.push({
+        formId: id,
+        value: document.querySelector(`#tf-${id}`).value
+      });
+    });
+    console.log(posts);
+    // send all posts to server
+  }
+
   render() {
     return (
       <div className="tweet-page">
@@ -44,7 +57,7 @@ class Tweet extends React.Component {
             <div className="clear"></div>
           </div>
           <div className="progress">
-            <button className="button" type="submit">Post</button>
+            <button className="button" onClick={this._handlePostClick} type="submit">Post</button>
           </div>
           <div className="tweet-forms">
             <div>
