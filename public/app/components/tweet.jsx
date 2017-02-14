@@ -4,23 +4,25 @@ import React from 'react';
 import { render } from 'react-dom';
 import Form from '../containers/form.jsx';
 
+let formSet = new Set();
+
 class Tweet extends React.Component {
 
   constructor() {
     super();
-    this._formSet = new Set();
-    this.state = { forms: this._formSet };
+    formSet.add(new Date().getTime());
+    this.state = { forms: formSet };
   }
 
   _incrementForms = (e) => {
     e.preventDefault();
-    let forms = this.state.forms;
-    forms.push(this._counter++);
-    this.setState({ forms: forms });
+    formSet.add(new Date().getTime());
+    this.setState({ forms: formSet });
   }
 
-  _decrementForms = (e) => {
-
+  _decrementForms = (formId) => {
+    formSet.delete(formId);
+    this.setState({forms: formSet});
   }
 
   render() {
@@ -46,8 +48,9 @@ class Tweet extends React.Component {
           </div>
           <div className="tweet-forms">
             <div>
-              { for (let form of formSet) }
-              { this.state.forms.map((val, index) => <Form key={index} /> ) }
+              {
+                Array.from(this.state.forms).map((id) => <Form key={id} id={id} fn={this._decrementForms} /> )
+              }
             </div>
             <div className="form-control">
               <button onClick={this._incrementForms} className="button">+ Thread</button>

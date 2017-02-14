@@ -24,7 +24,7 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form className="form" id={`tweet-form-${this.props.id}`}>
+      <form className="form" id={`${this.props.id}`}>
       	<textarea onKeyUp={this._handleCount} maxLength="140"></textarea>
       	<span className="counter">{this.state.charCount}</span>
         <a className="remove" onClick={this._removeForm}>remove</a>
