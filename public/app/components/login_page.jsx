@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const Login = () => (
+const LoginPage = () => (
   <div className="login-page">
   	<section>
 			<h1 className="logo">Tweet-threader</h1>
@@ -12,4 +12,4 @@ const Login = () => (
   </div>
 );
 
-export default Login;
+export default LoginPage;
