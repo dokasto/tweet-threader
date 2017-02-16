@@ -17,15 +17,23 @@ class Form extends React.Component {
     }
   }
 
-  _removeForm = (e) => {
-    e.preventDefault();
-    this.props.fn(this.props.id);
+  _removeForm = () => {
+    this.props.onRemove(this.props.id);
+  }
+
+  _onChange = (e) => {
+    let text = e.target.value;
+    this.props.onChange(this.props.id, text);
   }
 
   render() {
     return (
       <form className="form" id={this.props.id}>
-      	<textarea id={`tf-${this.props.id}`} onKeyUp={this._handleCount} maxLength="140"></textarea>
+      	<textarea 
+          onChange={this._onChange} 
+          id={`tf-${this.props.id}`} 
+          onKeyUp={this._handleCount}
+          maxLength="140">{this.props.text}</textarea>
       	<span className="counter">{this.state.charCount}</span>
         <a className="remove" onClick={this._removeForm}>remove</a>
       </form>
@@ -35,7 +43,10 @@ class Form extends React.Component {
 
 Form.PropTypes = {
   id: PropTypes.number.isRequired,
-  fn: PropTypes.func.isRequired
+  status: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  onRemove: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 export default Form;
