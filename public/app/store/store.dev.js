@@ -1,11 +1,13 @@
 'use strict';
 
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
 import DevTools from '../containers/devtools.jsx';
 
 const createStoreWithMiddleware = compose(
+  applyMiddleware(thunk),
   DevTools.instrument(),
   persistState(getDegubSessionKey())
 )(createStore);
