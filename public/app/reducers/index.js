@@ -1,10 +1,10 @@
 'use strict';
 
 import { combineReducers } from 'redux';
-import tweetReducer from './tweet';
 import authReducer from './auth';
+import forms from './forms';
 
 export default combineReducers({
-  tweetReducer,
+	forms,
   authReducer
 });
