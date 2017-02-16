@@ -22,8 +22,7 @@ class Form extends React.Component {
   }
 
   _onChange = (e) => {
-    let text = e.target.value;
-    this.props.onChange(this.props.id, text);
+    this.props.onChange(this.props.id, e.target.value);
   }
 
   render() {
