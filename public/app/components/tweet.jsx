@@ -1,9 +1,8 @@
-
 import React, { PropTypes } from 'react';
 import Form from '../containers/form.jsx';
 
 const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms }) => {
-  return ( <div className="tweet-page">
+  return (<div className="tweet-page">
             <section className="container">
               <div className="header">
                 <h2 className="logo">Tweet-threader</h2>
@@ -23,7 +22,7 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms }) => {
                 <button className="button" onClick={postTweets} type="submit">Post</button>
               </div>
               <div className="tweet-forms">
-                <div>
+                <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
                   { forms.map((each) => <Form 
                                           key={each.id} 
                                           id={each.id} 
@@ -31,15 +30,14 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms }) => {
                                           text={each.text}
                                           onChange={onChange} 
                                           onRemove={onRemove} /> ) 
-                }
+                  }
                 </div>
                 <div className="form-control">
                   <button onClick={onAddForm} className="button">+ Thread</button>
                 </div>
               </div>
             </section>
-          </div>
-  )
+          </div>)
 }
 
 Tweet.propTypes = {

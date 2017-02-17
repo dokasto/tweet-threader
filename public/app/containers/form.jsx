@@ -32,7 +32,7 @@ class Form extends React.Component {
           onChange={this._onChange} 
           id={`tf-${this.props.id}`} 
           onKeyUp={this._handleCount}
-          maxLength="140">{this.props.text}</textarea>
+          maxLength="140" value={this.props.text}></textarea>
       	<span className="counter">{this.state.charCount}</span>
         <a className="remove" onClick={this._removeForm}>remove</a>
       </form>

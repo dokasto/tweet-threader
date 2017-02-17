@@ -1,9 +1,16 @@
+const defaultState = {
+  id: new Date().getTime(),
+  status: 'active',
+  text: ''
+};
+
 const form = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_FORM':
       return {
         id: action.id,
-        status: action.status
+        status: action.status,
+        text: ''
       }
     case 'UPDATE_CONTENT':
       if (state.id !== action.id) {
@@ -15,7 +22,7 @@ const form = (state = {}, action) => {
   }
 }
 
-const forms = (state = [], action) => {
+const forms = (state = [defaultState], action) => {
   switch (action.type) {
     case 'ADD_FORM':
       return [

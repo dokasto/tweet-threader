@@ -111,6 +111,11 @@
   }
   .tweet-forms {
     position: relative;
+    .hide-remove-btn {
+      .remove {
+        display: none;
+      }
+    }
   }
   .form-control {
     display: block;
