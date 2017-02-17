@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
 	return { forms: state.forms };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		onAddForm: (e) => { 
 			e.preventDefault(); 
@@ -19,7 +19,11 @@ const mapDispatchToProps = (dispatch) => {
 		onChange: (id, text) => {
 			dispatch(updateContent(id, text));
 		},
-		postTweets: () => { dispatch(postTweets) }
+		postTweets: (tweets) => { 
+			// loop through
+			// create promises
+			// resolve one by one
+		}
 	}
 }
 

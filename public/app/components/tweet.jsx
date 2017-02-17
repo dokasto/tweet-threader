@@ -2,6 +2,12 @@ import React, { PropTypes } from 'react';
 import Form from '../containers/form.jsx';
 
 const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms }) => {
+
+  const _onClick = (e) => {
+    e.preventDefault();
+    postTweets(forms);
+  };
+
   return (<div className="tweet-page">
             <section className="container">
               <div className="header">
@@ -19,7 +25,7 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms }) => {
                 <div className="clear"></div>
               </div>
               <div className="progress">
-                <button className="button" onClick={postTweets} type="submit">Post</button>
+                <button className="button" onClick={_onClick} type="submit">Post</button>
               </div>
               <div className="tweet-forms">
                 <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>

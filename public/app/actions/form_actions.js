@@ -7,7 +7,6 @@ export const addForm = () => {
 	};
 }
 
-
 export const removeForm = (id) => {
 	return {
 		type: 'REMOVE_FORM',
@@ -15,8 +14,7 @@ export const removeForm = (id) => {
 	};
 }
 
-
-export const postTweets = () => {
+export const postTweets = (tweets) => {
 	return {
 		type: 'POST_TWEETS'
 	};
