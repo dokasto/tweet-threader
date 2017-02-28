@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Form from '../containers/form.jsx';
 
-const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms }) => {
+const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person }) => {
 
   const _onClick = (e) => {
     e.preventDefault();
@@ -14,11 +14,11 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms }) => {
                 <h2 className="logo">Tweet-threader</h2>
                 <aside>
                   <picture>
-                    <img src="https://pbs.twimg.com/profile_images/824632173223354368/lI8LjsBs_bigger.jpg" />
+                    <img src={person.photos[0].value} />
                   </picture>
                   <div>
-                    <span className="fullname">Udo Nkwocha</span>
-                    <label className="username">@thisisudo</label>
+                    <span className="fullname">{person.displayName}</span>
+                    <label className="username">@{person.username}</label>
                   </div>
                   <div className="clear"></div>
                 </aside>
@@ -51,7 +51,8 @@ Tweet.propTypes = {
   onAddForm: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  forms: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+  forms: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  person: PropTypes.object.isRequired
 };
 
 export default Tweet;
