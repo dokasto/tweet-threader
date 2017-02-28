@@ -4,39 +4,33 @@
  * App server
  */
 
-const express = require('express');
-const app = express();
-const path = require('path');
-const compression = require('compression');
-const proxyMiddleware = require('proxy-middleware');
-const url = require('url');
+require('dotenv').config();
 
+const express = require('express');
+const router = express.Router();
+const app = express();
 const env = process.env.NODE_ENV;
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || process.env.DEV_PORT;
 
 app.set('view engine', 'jade');
+app.use(require('morgan')('combined'));
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('compression')());
 
-app.use(compression());
+app.use(require('express-session')({
+  secret: process.env.APP_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
 
-// Attach webpack server during development
-if (env !== 'production') {
-  const webpack = require('webpack');
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('./public/webpack/config.dev.js');
-  const compiler = webpack(config);
+// setup webpack
+require('./api/lib/webpack_setup')(app);
 
-  app.use(webpackDevMiddleware(compiler, {
-    historyApiFallback: true,
-    hot: true,
-    noInfo: true,
-    publicPath: config.output.publicPath,
-  }));
-  app.use(webpackHotMiddleware(compiler));
-}
+// authentication route
+require('./api/routes/auth')(app);
 
 // setup proxy for static assets
-app.use('/public', proxyMiddleware(url.parse(`http://localhost:${port}/public/build`)));
+app.use('/public', require('proxy-middleware')(require('url').parse(`http://localhost:${port}/public/build`)));
 
 app.get('/*', (request, response) => {
   response.render(__dirname + '/public/index.jade');
