@@ -13,7 +13,6 @@ const env = process.env.NODE_ENV;
 const port = process.env.PORT || process.env.DEV_PORT;
 
 app.set('view engine', 'jade');
-app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('compression')());
 
