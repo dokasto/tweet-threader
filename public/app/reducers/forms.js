@@ -1,6 +1,6 @@
 const defaultState = {
   id: new Date().getTime(),
-  status: 'active',
+  status: 'pending', // posted | failed
   text: ''
 };
 

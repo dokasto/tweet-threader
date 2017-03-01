@@ -8,11 +8,14 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const env = process.env.NODE_ENV;
 const port = process.env.PORT || process.env.DEV_PORT;
 
 app.set('view engine', 'jade');
-app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(require('multer'));
 app.use(require('compression')());
 
 app.use(require('express-session')({
@@ -26,6 +29,9 @@ require('./api/lib/webpack_setup')(app);
 
 // authentication route
 require('./api/routes/auth')(app);
+
+// post tweet route
+require('./api/routes/tweet')(app);
 
 // setup proxy for static assets
 app.use('/public', require('proxy-middleware')(require('url').parse(`http://localhost:${port}/public/build`)));
