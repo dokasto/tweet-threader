@@ -7,7 +7,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const router = express.Router();
 const app = express();
 const env = process.env.NODE_ENV;
 const port = process.env.PORT || process.env.DEV_PORT;
