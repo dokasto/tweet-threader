@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
-    "build": "webpack --config ./public/webpack/config.prod.js --progress --colors"
+    "postinstall": "webpack --config ./public/webpack/config.prod.js --progress --colors"
   },
   "repository": {
     "type": "git",
