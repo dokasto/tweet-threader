@@ -15,7 +15,6 @@ const port = process.env.PORT || process.env.DEV_PORT;
 app.set('view engine', 'jade');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(require('multer'));
 app.use(require('compression')());
 
 app.use(require('express-session')({
