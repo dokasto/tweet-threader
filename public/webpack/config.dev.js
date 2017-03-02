@@ -2,7 +2,6 @@
 
 const webpack = require('webpack');
 const PATHS = require('./constants');
-const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
 
@@ -31,10 +30,6 @@ module.exports = {
   },
 
   plugins: [
-    new DotenvPlugin({
-      sample: PATHS.env,
-      path: PATHS.env
-    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

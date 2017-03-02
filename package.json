@@ -71,7 +71,6 @@
     "redux-thunk": "2.2.0",
     "reset.css": "2.0.2",
     "twitter": "1.7.0",
-    "webpack": "1.14.0",
-    "webpack-dotenv-plugin": "^2.0.0"
+    "webpack": "1.14.0"
   }
 }
