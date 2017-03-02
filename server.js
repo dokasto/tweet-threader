@@ -25,6 +25,7 @@ app.use(require('express-session')({
   saveUninitialized: false
 }));
 
+app.use(express.static('public'));
 
 // setup webpack
 require('./api/lib/webpack_setup')(app);
