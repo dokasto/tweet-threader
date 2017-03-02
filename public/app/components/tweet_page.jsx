@@ -26,9 +26,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   let string = ownProps.location.query.data;
   let buffer = new Buffer(string, 'base64');
-  let twitterUser = JSON.parse(decodeURI(buffer.toString()));
+  let person = JSON.parse(decodeURI(buffer.toString())); // twitter user
 
   return {
+    person,
     onAddForm: (e) => {
       e.preventDefault();
       dispatch(addForm());
@@ -62,6 +63,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             hasError = true;
 
+            alert(response.data.error[0].message);
+
           }
 
         }
@@ -70,8 +73,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         console.log('error here');
       });
 
-    },
-    person: twitterUser
+    }
   }
 };
 

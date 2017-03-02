@@ -25,9 +25,16 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person }) => 
                 <div className="clear"></div>
               </div>
               <div className="progress">
-                <button className="button" onClick={_onClick} type="submit">Post</button>
+                { 
+                  forms.length > 0 ?
+                  <button className="button" onClick={_onClick} type="submit">Post</button>
+                  : null
+                }
               </div>
               <div className="tweet-forms">
+                {
+                  forms.length === 0 ? <div className="success-notification">Tweets sent</div> : null
+                }
                 <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
                   { forms.map((each) => <Form 
                                           key={each.id} 
