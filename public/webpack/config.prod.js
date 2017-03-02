@@ -37,8 +37,6 @@ module.exports = {
       'global.Object.prototype': {},
       'global.GENTLY': false,
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.IgnorePlugin(new RegExp('^(fs|ipc)$')),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
