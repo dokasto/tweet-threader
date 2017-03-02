@@ -21,24 +21,21 @@ module.exports = (app) => {
    */
   app.post('/status/update', (req, res) => {
 
-    let params = { status: req.body.formData.text };
+    let params = { status: req.body.status };
 
-    if (req.body.formData.inReply) {
-      params.in_reply_to_status_id = req.body.formData.inReply;
+    if (req.body.inReply && req.body.inReply !== null) {
+      params.in_reply_to_status_id = req.body.inReply;
     }
 
-    client.post('statuses/update', params, function(error, tweet, response) {
-      res.json({
-        error,
-        tweetId: response.id
+    client.post('statuses/update', params,
+      function(error, tweet, response) {
+        res.json({
+          error: error ? true : false,
+          tweetId: tweet.id_str
+        });
       });
-    });
 
   });
 
-
-  app.post('/twitter/status/reply', (req, res) => {
-
-  });
 
 };
