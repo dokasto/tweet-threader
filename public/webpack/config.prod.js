@@ -1,7 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 const PATHS = require('./constants');
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
 
   entry: {
     app: [
-      PATHS.app
+      path.resolve(__dirname, '..', 'app/index.jsx'),
     ],
     vendor: [
       'react',
@@ -41,7 +41,7 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /(node_modules|server)/, loaders: ['babel'] },
+      { test: /\.jsx?$/, exclude: /(node_modules|api)/, loaders: ['babel'] },
       { test: /\.json$/, loader: 'json' },
       { test: /\.css$/, exclude: /node_modules/, loaders: ['style', 'css'] },
       { test: /\.scss$/, loader: 'style!css!sass' },

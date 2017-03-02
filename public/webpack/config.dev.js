@@ -1,6 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
+const path = require('path');
 const PATHS = require('./constants');
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
     app: [
       'react-hot-loader/patch',
       'webpack-hot-middleware/client',
-      PATHS.app,
+      path.resolve(__dirname, '..', 'app/index.jsx'),
     ],
     vendor: [
       'react',
@@ -42,7 +43,7 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /(node_modules|server)/, loaders: ['babel'] },
+      { test: /\.jsx?$/, exclude: /(node_modules|api)/, loaders: ['babel'] },
       { test: /\.json$/, loader: 'json' },
       { test: /\.css$/, exclude: /node_modules/, loaders: ['style', 'css'] },
       { test: /\.scss$/, loader: 'style!css!sass' },
