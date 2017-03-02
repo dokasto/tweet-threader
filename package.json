@@ -40,7 +40,7 @@
     "sass-loader": "4.0.2",
     "style": "0.0.3",
     "style-loader": "0.13.1",
-    "webpack": "1.14.0",
+    "webpack": "^1.14.0",
     "webpack-dev-middleware": "1.8.4",
     "webpack-dev-server": "1.16.2",
     "webpack-dotenv-plugin": "^2.0.0",
