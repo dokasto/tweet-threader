@@ -30,7 +30,8 @@ module.exports = (app) => {
     client.post('statuses/update', params,
       function(error, tweet, response) {
         res.json({
-          error: error ? true : false,
+          hasError: error ? true : false,
+          error,
           tweetId: tweet.id_str
         });
       });

@@ -7,21 +7,20 @@ const co = require('co');
 const Buffer = require('buffer/').Buffer;
 
 /**
- * Post a form
- * @param  {object} formData  
- * @param  {number} inReply
- * @return {promise}     
+ * Post tweet
+ * @param  {string} status  
+ * @param  {integer} inReply  
+ * @return {Promise}          
  */
-const postTweet = (formData, inReply = null) => {
-  return axios.post('/status/update', {
-    formData,
-    inReply
-  });
+const postTweet = (status, inReply) => {
+  return axios.post('/status/update', { status, inReply });
 };
+
 
 const mapStateToProps = (state) => {
   return { forms: state.forms };
-}
+};
+
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
@@ -45,15 +44,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       co(function*() {
         let inReply = null;
         let response = null;
-        let error = false;
+        let hasError = false;
 
-        while (forms.length > 0 && !error) {
+        while (forms.length > 0 && !hasError) {
 
-          response = yield postTweet(forms[0], inReply);
+          response = yield postTweet(forms[0].text, inReply);
 
-          console.log(response.data);
-
-          if (!response.data.error) {
+          if (!response.data.hasError) {
 
             inReply = response.data.tweetId;
 
@@ -63,7 +60,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
           } else {
 
-            error = true;
+            hasError = true;
 
           }
 
@@ -76,7 +73,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     person: twitterUser
   }
-}
+};
 
 const TweetPage = connect(mapStateToProps, mapDispatchToProps)(Tweet);
 
