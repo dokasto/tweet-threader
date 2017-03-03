@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const path = require('path');
 const PATHS = require('./constants');
 
-console.log(PATHS.app);
-
 module.exports = {
 
   devtool: 'inline-cheap-source-map',
@@ -35,10 +33,18 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',
-      }
+      },
+      'global.Object.prototype': {},
+      'global.GENTLY': false,
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+    new webpack.IgnorePlugin(new RegExp('^(fs|ipc)$')),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
+    })
   ],
 
   module: {
