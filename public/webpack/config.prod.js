@@ -10,7 +10,7 @@ module.exports = {
 
   entry: {
     app: [
-      path.resolve(__dirname, '..', 'app/index.jsx'),
+      PATHS.app,
     ],
     vendor: [
       'react',
