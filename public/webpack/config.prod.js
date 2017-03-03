@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const path = require('path');
 const PATHS = require('./constants');
 
+console.log(PATHS.app);
+
 module.exports = {
 
   devtool: 'inline-cheap-source-map',
