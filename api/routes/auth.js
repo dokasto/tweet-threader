@@ -9,7 +9,7 @@ module.exports = (app) => {
   const passport = require('passport');
   const TwitterStrategy = require('passport-twitter').Strategy;
   const Config = process.env;
-  const Host = `${Config.HOST_NAME}:${Config.DEV_PORT}`;
+  const Host = (Config.NODE_ENV === 'development') ? `${Config.HOST_NAME}:${Config.DEV_PORT}` : Config.HOST_NAME;
 
   app.use(passport.initialize());
   app.use(passport.session());
