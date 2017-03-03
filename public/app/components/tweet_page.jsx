@@ -46,27 +46,35 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         let inReply = null;
         let response = null;
         let hasError = false;
+        let emptyFields = forms.filter((form) => form.text.length <= 0);
 
-        while (forms.length > 0 && !hasError) {
+        if (emptyFields.length > 0) {
 
-          response = yield postTweet(forms[0].text, inReply);
+          alert('some fields are empty');
 
-          if (!response.data.hasError) {
+        } else {
 
-            inReply = response.data.tweetId;
+          while (forms.length > 0 && !hasError) {
 
-            dispatch(removeForm(forms[0].id));
+            response = yield postTweet(forms[0].text, inReply);
 
-            forms.splice(0, 1);
+            if (!response.data.hasError) {
 
-          } else {
+              inReply = response.data.tweetId;
 
-            hasError = true;
+              dispatch(removeForm(forms[0].id));
 
-            alert(response.data.error[0].message);
+              forms.splice(0, 1);
+
+            } else {
+
+              hasError = true;
+
+              alert(response.data.error[0].message);
+
+            }
 
           }
-
         }
 
       }).catch(function() {
