@@ -13,9 +13,6 @@ const env = process.env.NODE_ENV;
 const host = process.env.HOST_NAME;
 const port = process.env.PORT || process.env.DEV_PORT;
 
-let proxyTarget = (env === 'development') ? `${host}:${port}` : host;
-proxyTarget += '/public/build';
-
 app.set('view engine', 'jade');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
