@@ -21,6 +21,9 @@
   "bugs": {
     "url": "https://github.com/Udokah/tweet-threader/issues"
   },
+  "engines": {
+    "node": "7.5.0"
+  },
   "homepage": "https://github.com/Udokah/tweet-threader#readme",
   "devDependencies": {
     "babel-cli": "6.18.0",
