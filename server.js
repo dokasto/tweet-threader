@@ -38,11 +38,7 @@ require('./api/routes/auth')(app);
 // post tweet route
 require('./api/routes/tweet')(app);
 
-app.get('/', (request, response) => {
-  response.render(__dirname + '/public/index.jade');
-});
-
-app.get('/tweet*', (request, response) => {
+app.get('/*', (request, response) => {
   response.render(__dirname + '/public/index.jade');
 });
 
