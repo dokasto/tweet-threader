@@ -63,6 +63,7 @@
     "normalize-css": "2.3.1",
     "passport": "0.3.2",
     "passport-twitter": "1.0.4",
+    "proxy-middleware": "^0.15.0",
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-redux": "5.0.2",
