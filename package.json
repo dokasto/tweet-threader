@@ -22,7 +22,8 @@
     "url": "https://github.com/Udokah/tweet-threader/issues"
   },
   "engines": {
-    "node": "7.5.0"
+    "node": "7.5.0",
+    "npm": "4.1.2"
   },
   "homepage": "https://github.com/Udokah/tweet-threader#readme",
   "devDependencies": {
