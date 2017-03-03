@@ -37,7 +37,8 @@ module.exports = (app) => {
   app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }),
     (req, res) => {
       let buffer = new Buffer(encodeURI(JSON.stringify(req.user)));
-      res.redirect('/tweet?data=' + buffer.toString('base64'));
+      app.set('twitter-user', buffer.toString('base64'));
+      res.redirect('/tweet');
     });
 
 };

@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
-  let string = ownProps.location.query.data;
+  let string = document.querySelector('#root').getAttribute('data-user');
   let buffer = new Buffer(string, 'base64');
   let person = JSON.parse(decodeURI(buffer.toString())); // twitter user
 
