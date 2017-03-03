@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   let string = document.querySelector('#root').getAttribute('data-user');
 
   if (string === 'undefined') {
-    window.location = process.env.HOST_NAME;
+    window.location = process.env.HOST_NAME + '/';
   }
 
   let buffer = new Buffer(string, 'base64');
