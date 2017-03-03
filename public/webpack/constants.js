@@ -1,5 +1,5 @@
 const path = require('path');
 
 module.exports = {
-  build: path.resolve(__dirname, '..', 'public/build')
+  build: path.resolve(__dirname, '..', 'build')
 };

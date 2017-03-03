@@ -39,9 +39,13 @@ require('./api/routes/auth')(app);
 require('./api/routes/tweet')(app);
 
 // setup proxy for static assets
-app.use('/build', require('http-proxy-middleware')({ target: proxyTarget, changeOrigin: false }));
+//app.use('/build', require('http-proxy-middleware')({ target: proxyTarget, changeOrigin: false }));
 
-app.get('/*', (request, response) => {
+app.get('/', (request, response) => {
+  response.render(__dirname + '/public/index.jade');
+});
+
+app.get('/tweet', (request, response) => {
   response.render(__dirname + '/public/index.jade');
 });
 
