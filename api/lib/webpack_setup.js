@@ -9,7 +9,7 @@ module.exports = (app) => {
 
   if (process.env.NODE_ENV !== 'production') {
 
-    const config = require('../../public/webpack/config.dev.js');
+    const config = require('../../public/configs/webpack.dev.js');
     const compiler = require('webpack')(config);
 
     app.use(require('webpack-dev-middleware')(compiler, {
