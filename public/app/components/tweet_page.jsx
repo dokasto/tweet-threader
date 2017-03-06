@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { addForm, removeForm, updateContent, postTweets } from '../actions/form_actions';
 import Tweet from './tweet.jsx';
 import axios from 'axios';
-const co = require('co');
+import co from 'co';
 
 const Buffer = require('buffer/').Buffer;
 
@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onChange: (id, text) => {
       dispatch(updateContent(id, text));
     },
-    postTweets: function(forms) {
+    postTweets: (forms) => {
 
       co(function*() {
         let inReply = null;
@@ -82,7 +82,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           }
         }
 
-      }).catch(function() {
+      }).catch(() => {
         console.log('error here');
       });
 

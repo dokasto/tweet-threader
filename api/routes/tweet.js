@@ -28,7 +28,7 @@ module.exports = (app) => {
     }
 
     client.post('statuses/update', params,
-      function(error, tweet, response) {
+      (error, tweet, response) => {
         res.json({
           hasError: error ? true : false,
           error,
