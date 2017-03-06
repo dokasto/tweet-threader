@@ -19,7 +19,13 @@ module.exports = {
       'react-dom',
       'redux',
       'react-router',
-      'react-redux'
+      'react-redux',
+      'buffer',
+      'co',
+      'redux-devtools',
+      'redux-devtools-dock-monitor',
+      'redux-devtools-log-monitor',
+      'redux-thunk'
     ]
   },
 
