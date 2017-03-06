@@ -8,49 +8,44 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person }) => 
     postTweets(forms);
   };
 
-  return (<div className="tweet-page">
-            <section className="container">
-              <div className="header">
-                <h2 className="logo">Tweet-threader</h2>
-                <aside>
-                  <picture>
-                    <img src={person.photos[0].value} />
-                  </picture>
-                  <div>
-                    <span className="fullname">{person.displayName}</span>
-                    <label className="username">@{person.username}</label>
-                  </div>
-                  <div className="clear"></div>
-                </aside>
-                <div className="clear"></div>
-              </div>
-              <div className="progress">
-                { 
-                  forms.length > 0 ?
-                  <button className="button" onClick={_onClick} type="submit">Post</button>
-                  : null
-                }
-              </div>
-              <div className="tweet-forms">
-                {
-                  forms.length === 0 ? <div className="success-notification">Tweets sent</div> : null
-                }
-                <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
-                  { forms.map((each) => <Form 
-                                          key={each.id} 
-                                          id={each.id} 
-                                          status={each.status}
-                                          text={each.text}
-                                          onChange={onChange} 
-                                          onRemove={onRemove} /> ) 
-                  }
-                </div>
-                <div className="form-control">
-                  <button onClick={onAddForm} className="button">+ Thread</button>
-                </div>
-              </div>
-            </section>
-          </div>)
+  return (
+    <div className="tweet-page">
+      <section className="container">
+        <header>
+          <aside>
+            <picture className="left">
+              <img src={person.photos[0].value} />
+            </picture>
+            <div className="right">
+              <span className="fullname">{person.displayName}</span>
+              <label className="username">@{person.username}</label>
+            </div>
+          </aside>
+          <button className="button" disabled={forms.length < 1} onClick={_onClick} type="submit">Post</button>
+        </header>
+        <div className="notifications">
+          <span className="error">error</span>
+          <span className="success">success</span>
+          <span className="warning">warning</span>
+        </div>
+        <div className="tweet-forms">
+          <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
+            { forms.map((each) => <Form 
+                                    key={each.id} 
+                                    id={each.id} 
+                                    status={each.status}
+                                    text={each.text}
+                                    onChange={onChange} 
+                                    onRemove={onRemove} /> ) 
+            }
+          </div>
+          <div className="form-control">
+            <button onClick={onAddForm} className="button">+ Thread</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }
 
 Tweet.propTypes = {
