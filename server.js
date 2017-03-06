@@ -9,8 +9,6 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const env = process.env.NODE_ENV;
-const host = process.env.HOST_NAME;
 const port = process.env.PORT || process.env.DEV_PORT;
 
 app.set('view engine', 'jade');
@@ -41,5 +39,5 @@ app.get('/*', (request, response) => {
 
 // start server
 app.listen(port, () => {
-  console.log(`Tweet-threader server running on ${host}:${port} in ${env} mode`);
+  console.log(`Tweet-threader server running on ${process.env.HOST_NAME}:${port} in ${process.env.NODE_ENV} mode`);
 });
