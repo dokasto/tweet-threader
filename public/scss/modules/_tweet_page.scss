@@ -103,7 +103,22 @@
     padding: 0.3rem;
     text-align: center;
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    &:after {
+      position: absolute;
+      content: '\A';
+      width: 0;
+      height: 50px;
+      background: transparent;
+      border: 2px dashed #fff;
+      left: 6%;
+      bottom: -47px;
+    }
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
     textarea {
       display: inline-block;
       position: relative;
