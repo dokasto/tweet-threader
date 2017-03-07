@@ -107,6 +107,7 @@
     textarea {
       display: inline-block;
       position: relative;
+      border: none;
       resize: none;
       outline: none;
       height: 90px;
@@ -115,6 +116,9 @@
       border-radius: 4px;
       width: 90%;
       box-sizing: border-box;
+      &:focus {
+        box-shadow: -1px -1px 16px #0084b4;
+      }
     }
     .counter {
       position: absolute;
