@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Form from '../containers/form.jsx';
 
-const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person }) => {
+const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person, notifications }) => {
 
   const _onClick = (e) => {
     e.preventDefault();
@@ -23,11 +23,11 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person }) => 
           </aside>
           <button className="button" disabled={forms.length < 1} onClick={_onClick} type="submit">Post</button>
         </header>
-        <div className="notifications">
-          <span className="error">error</span>
-          <span className="success">success</span>
-          <span className="warning">warning</span>
-        </div>
+        { notifications ?
+          <div className="notifications">
+            <span className={notifications.type}>{notifications.message}</span>
+          </div> : null
+        }
         <div className="tweet-forms">
           <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
             { forms.map((each) => <Form 
@@ -48,13 +48,15 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person }) => 
   )
 }
 
+
 Tweet.propTypes = {
   postTweets: PropTypes.func.isRequired,
   onAddForm: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   forms: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  person: PropTypes.object.isRequired
+  person: PropTypes.object.isRequired,
+  notifications: PropTypes.any.isRequired
 };
 
 export default Tweet;

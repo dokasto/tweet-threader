@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { addForm, removeForm, updateContent, postTweets } from '../actions/form_actions';
+import { success, error, warning } from '../actions/notifications';
 import Tweet from './tweet.jsx';
 import axios from 'axios';
 import co from 'co';
@@ -18,7 +19,10 @@ const postTweet = (status, inReply) => {
 
 
 const mapStateToProps = (state) => {
-  return { forms: state.forms };
+  return {
+    forms: state.forms,
+    notifications: state.notifications
+  };
 };
 
 
@@ -48,6 +52,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     postTweets: (forms) => {
 
       co(function*() {
+
         let inReply = null;
         let response = null;
         let hasError = false;
@@ -55,7 +60,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
         if (emptyFields.length > 0) {
 
-          alert('some fields are empty');
+          dispatch(warning('some fields are empty'));
 
         } else {
 
@@ -75,15 +80,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
               hasError = true;
 
-              alert(response.data.error[0].message);
+              dispatch(error(response.data.error[0].message));
 
             }
 
           }
+
+          // show success if all messages were sent completely
+          if (inReply !== null && !hasError) {
+
+            dispatch(success('Tweets posted successfully'));
+
+          }
+
         }
 
-      }).catch(() => {
-        console.log('error here');
+      }).catch((e) => {
+
+        dispatch(error(e.message));
+
       });
 
     }
