@@ -56,7 +56,7 @@ Tweet.propTypes = {
   onChange: PropTypes.func.isRequired,
   forms: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
   person: PropTypes.object.isRequired,
-  notifications: PropTypes.any.isRequired
+  notifications: PropTypes.object.isRequired
 };
 
 export default Tweet;
