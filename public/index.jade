@@ -9,6 +9,6 @@ html(lang='en')
     link(rel='icon', href='favicon.ico', type='image/x-icon')
     link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
   body
-    #root(data-user='undefined')
+    #root(data-user='#{locals.user}')
   script(defer='', src='/build/vendor.js')
   script(defer='', src='/build/app.js')
