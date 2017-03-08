@@ -40,7 +40,7 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person, notif
             }
           </div>
           <div className="form-control">
-            <button onClick={onAddForm} className="button">+ Thread</button>
+            <button onClick={onAddForm} className="button thread-btn">+ Thread</button>
           </div>
         </div>
       </section>

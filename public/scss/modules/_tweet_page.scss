@@ -12,7 +12,6 @@
     width: 100%;
     max-width: 450px;
     margin: 10px auto;
-    border: 1px solid #fff;
     header {
       display: flex;
       background-color: #292F33;
@@ -96,6 +95,14 @@
   .form-control {
     display: block;
     text-align: center;
+  }
+  .thread-btn {
+    width: 90%;
+    max-width: 350px;
+    padding: 0.6em;
+    background: #292F33;
+    border: 1px solid #fff;
+    color: #fff;
   }
   .form {
     display: block;
