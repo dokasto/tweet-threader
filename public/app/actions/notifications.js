@@ -20,3 +20,10 @@ export const success = (message) => {
     message,
   };
 };
+
+export const ongoing = (message) => {
+  return {
+    type: 'ongoing',
+    message,
+  };
+}

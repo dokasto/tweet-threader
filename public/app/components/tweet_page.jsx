@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { addForm, removeForm, updateContent, postTweets } from '../actions/form_actions';
-import { success, error, warning } from '../actions/notifications';
+import { success, error, warning, ongoing } from '../actions/notifications';
 import Tweet from './tweet.jsx';
 import axios from 'axios';
 import co from 'co';
@@ -64,6 +64,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
         } else {
 
+          dispatch(ongoing('Posting...'));
+
           while (forms.length > 0 && !hasError) {
 
             response = yield postTweet(forms[0].text, inReply);
@@ -90,6 +92,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           if (inReply !== null && !hasError) {
 
             dispatch(success('Tweets posted successfully'));
+
+            // add extra form
+            dispatch(addForm());
 
           }
 

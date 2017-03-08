@@ -7,6 +7,8 @@ const notifications = (state = {}, action) => {
       return action;
     case 'warning':
       return action;
+    case 'ongoing':
+      return action;
     default:
       return state;
   }

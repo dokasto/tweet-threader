@@ -10,40 +10,42 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person, notif
 
   return (
     <div className="tweet-page">
-      <section className="container">
-        <header>
-          <aside>
-            <picture className="left">
-              <img src={person.photos[0].value} />
-            </picture>
-            <div className="right">
-              <span className="fullname">{person.displayName}</span>
-              <label className="username">@{person.username}</label>
+      <div className={notifications.type === 'ongoing' ? 'disabled' : ''}>
+        <section className="container">
+          <header>
+            <aside>
+              <picture className="left">
+                <img src={person.photos[0].value} />
+              </picture>
+              <div className="right">
+                <span className="fullname">{person.displayName}</span>
+                <label className="username">@{person.username}</label>
+              </div>
+            </aside>
+            <button className="button post-btn" disabled={forms.length < 1} onClick={_onClick} type="submit">Post</button>
+          </header>
+          { notifications ?
+            <div className="notifications">
+              <span className={notifications.type}>{notifications.message}</span>
+            </div> : null
+          }
+          <div className="tweet-forms">
+            <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
+              { forms.map((each) => <Form 
+                                      key={each.id} 
+                                      id={each.id} 
+                                      status={each.status}
+                                      text={each.text}
+                                      onChange={onChange} 
+                                      onRemove={onRemove} /> ) 
+              }
             </div>
-          </aside>
-          <button className="button" disabled={forms.length < 1} onClick={_onClick} type="submit">Post</button>
-        </header>
-        { notifications ?
-          <div className="notifications">
-            <span className={notifications.type}>{notifications.message}</span>
-          </div> : null
-        }
-        <div className="tweet-forms">
-          <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
-            { forms.map((each) => <Form 
-                                    key={each.id} 
-                                    id={each.id} 
-                                    status={each.status}
-                                    text={each.text}
-                                    onChange={onChange} 
-                                    onRemove={onRemove} /> ) 
-            }
+            <div className="form-control">
+              <button onClick={onAddForm} className="button thread-btn">+ Thread</button>
+            </div>
           </div>
-          <div className="form-control">
-            <button onClick={onAddForm} className="button thread-btn">+ Thread</button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   )
 }

@@ -6,6 +6,15 @@
   height: 100%;
   display: block;
   background-color: #444448;
+  .disabled {
+    .tweet-forms textarea,
+    .thread-btn,
+    .post-btn {
+      opacity: 0.7;
+      pointer-events: none;
+      tab-index: -1;
+    }
+  }
   .container {
     position: relative;
     display: block;
@@ -83,6 +92,9 @@
     }
     .error {
       background: #E36049;
+    }
+    .ongoing {
+      background: #3498db;
     }
   }
   .tweet-forms {
