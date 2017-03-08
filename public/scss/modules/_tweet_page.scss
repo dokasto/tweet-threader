@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: block;
   background-color: #444448;
   .container {
@@ -12,6 +12,7 @@
     width: 100%;
     max-width: 450px;
     margin: 10px auto;
+    padding: 5px;
     header {
       display: flex;
       background-color: #292F33;
@@ -98,7 +99,7 @@
   }
   .thread-btn {
     width: 90%;
-    max-width: 350px;
+    max-width: 390px;
     padding: 0.6em;
     background: #292F33;
     border: 1px solid #fff;
