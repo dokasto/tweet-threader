@@ -9,8 +9,8 @@ class LoginPage extends React.Component {
       <div className="login-page">
 		  	<main>
 					<h1>Threader</h1>
-					<p>Easily create threads on Twitter.</p>
-		    	<a href="/auth/twitter" className="button">Login with Twitter</a>
+					<p>A better way to create threads on Twitter.</p>
+		    	<a href="/auth/twitter" className="button">Login to start</a>
 		  	</main>
 		  </div>
     );
