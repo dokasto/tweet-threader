@@ -20,6 +20,8 @@ module.exports = (app) => {
       callbackURL: Host + '/auth/twitter/callback'
     },
     (token, tokenSecret, profile, cb) => {
+      app.set('access_token_key', token);
+      app.set('access_token_secret', tokenSecret);
       cb(null, profile);
     }
   ));
