@@ -10,7 +10,7 @@
   main {
     position: relative;
     display: block;
-    max-width: 400px;
+    max-width: 440px;
     width: 100%;
     margin: 150px auto;
     padding: 0.5rem;
@@ -22,8 +22,9 @@
     }
     p {
       display: inherit;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: normal;
+      line-height: 1.3;
     }
     a {
       text-shadow: none;
@@ -40,6 +41,18 @@
       &:active {
         background: darken(#fff, 1%);
         box-shadow: none;
+      }
+    }
+  }
+  section {
+    display: block;
+    text-align: left;
+    margin-top: 25px;
+    ul {
+      li {
+        display: block;
+        padding: 0.3rem;
+        font-size: 0.95rem;
       }
     }
   }
