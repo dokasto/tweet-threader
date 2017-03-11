@@ -8,7 +8,7 @@ class LoginPage extends React.Component {
     return (
       <div className="login-page">
 		  	<main>
-					<h1>Threader</h1>
+					<h1>TweetThreader</h1>
 					<p>This tool allows you create threads on Twitter. All you need do is compose chunk of tweets and they will be 
 					threaded.</p>
 		    	<a href="/auth/twitter" className="button login-btn">Simply login with Twitter to start</a>
