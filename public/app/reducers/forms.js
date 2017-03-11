@@ -10,7 +10,7 @@ const form = (state = {}, action) => {
       return {
         id: action.id,
         status: action.status,
-        text: ''
+        text: action.text
       }
     case 'UPDATE_CONTENT':
       if (state.id !== action.id) {

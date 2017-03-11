@@ -37,6 +37,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   let buffer = new Buffer(string, 'base64');
   let person = JSON.parse(decodeURI(buffer.toString())); // twitter user
 
+  let hasShared = false;
+
   return {
     person,
     onAddForm: (e) => {
@@ -91,10 +93,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           // show success if all messages were sent completely
           if (inReply !== null && !hasError) {
 
-            dispatch(success('Tweets posted successfully'));
+            if (!hasShared) {
 
-            // add extra form
-            dispatch(addForm());
+              dispatch(success('Tweets posted successfully. Help us spread the word :)'));
+
+              let message = 'Hey, I created threads easily using http://tweet-threader.herokuapp.com/. Try it :)';
+
+              // add extra form
+              dispatch(addForm(message));
+
+              hasShared = true;
+
+            } else {
+
+              dispatch(success('Thank you :) '));
+
+              dispatch(addForm());
+
+            }
+
 
           }
 
