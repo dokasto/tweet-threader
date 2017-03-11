@@ -106,6 +106,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             } else {
 
+              hasShared = false;
+
               dispatch(success('Thank you :) '));
 
               dispatch(addForm());
