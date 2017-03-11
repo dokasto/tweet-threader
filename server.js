@@ -34,7 +34,10 @@ require('./api/routes/auth')(app);
 require('./api/routes/tweet')(app);
 
 app.get('/*', (request, response) => {
-  response.render(__dirname + '/public/index.jade', { user: app.get('twitter-user') });
+  response.render(__dirname + '/public/index.jade', {
+    env: process.env.NODE_ENV,
+    user: app.get('twitter-user')
+  });
 });
 
 // start server
