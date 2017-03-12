@@ -31,9 +31,11 @@ const Tweet = ({ onAddForm, onRemove, onChange, postTweets, forms, person, notif
           }
           <div className="tweet-forms">
             <div className={ forms.length <= 1 ? 'hide-remove-btn' : ''}>
-              { forms.map((each) => <Form 
+              { forms.map((each, index) => <Form 
                                       key={each.id} 
                                       id={each.id} 
+                                      index={index}
+                                      formCount={forms.length}
                                       status={each.status}
                                       text={each.text}
                                       onChange={onChange} 

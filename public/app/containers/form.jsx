@@ -10,6 +10,12 @@ class Form extends React.Component {
     this.state = { charCount: 140 };
   }
 
+  componentDidMount() {
+    if ((this.props.formCount - 1) === this.props.index) {
+      document.querySelector('#tf-' + this.props.id).focus();
+    }
+  }
+
   _handleCount = (e) => {
     const charsLength = e.target.value.length;
     if (charsLength < 141) {
@@ -28,12 +34,13 @@ class Form extends React.Component {
   render() {
     return (
       <form className="form" id={this.props.id}>
-      	<textarea 
+        <textarea 
+          ref={this.props.id}
           onChange={this._onChange} 
           id={`tf-${this.props.id}`} 
           onKeyUp={this._handleCount}
           maxLength="140" value={this.props.text}></textarea>
-      	<span className="counter">{this.state.charCount}</span>
+        <span className="counter">{this.state.charCount}</span>
         <a className="remove" onClick={this._removeForm}>&#215;</a>
       </form>
     )
@@ -42,6 +49,8 @@ class Form extends React.Component {
 
 Form.PropTypes = {
   id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  formCount: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   text: PropTypes.string,
   onRemove: PropTypes.func.isRequired,
