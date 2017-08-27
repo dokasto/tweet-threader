@@ -8,7 +8,7 @@ Each tweet had to be posted after the previous one has been successful and also,
 
 `Generators` + `Promises` = Powerful.
 
-It was used here https://github.com/Udokah/tweet-threader/blob/master/public/app/components/tweet_page.jsx#L71
+It was used here https://github.com/Udokah/tweet-threader/blob/master/public/app/components/tweet_page.jsx#L73
 
 
 
