@@ -1,0 +1,25 @@
+{
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es6": true,
+		"node": true
+	},
+	"extends": ["airbnb", "prettier", "prettier/react"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"jsx": true
+		},
+		"sourceType": "module"
+	},
+	"plugins": ["react", "jsx-a11y"],
+	"rules": {
+		"prettier/prettier": "error",
+		"indent": ["error", "tab"],
+		"linebreak-style": ["error", "unix"],
+		"quotes": ["error", "single"],
+		"semi": ["error", "always"]
+	}
+}

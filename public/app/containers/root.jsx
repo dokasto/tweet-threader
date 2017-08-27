@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -9,23 +7,20 @@ import Routes from '../components/routes.jsx';
 // styles
 import '../../scss/main.scss';
 
-let isProduction = (process.env.NODE_ENV === 'production') ? true : false;
+const isProduction = process.env.NODE_ENV === 'production';
 
-export default class Root extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Provider store={this.props.store}>
-		  	{ isProduction ? <Routes /> : <div><Routes /><DevTools /></div> }
-		  </Provider>
-    );
-  }
-}
+const Root = ({ store }) =>
+	<Provider store={store}>
+		{isProduction
+			? <Routes />
+			: <div>
+				<Routes />
+				<DevTools />
+			</div>}
+	</Provider>;
 
 Root.PropTypes = {
-  store: PropTypes.object.isRequired
+	store: PropTypes.object.isRequired,
 };
+
+export default Root;

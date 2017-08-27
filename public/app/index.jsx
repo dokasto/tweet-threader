@@ -15,16 +15,26 @@ const store = configureStore(storage.get(APP_STORAGE) || {});
 const rootElement = document.getElementById('root');
 
 store.subscribe(() => {
-  if (!storage.get('debug')) {
-    storage.set(APP_STORAGE, store.getState());
-  }
+	if (!storage.get('debug')) {
+		storage.set(APP_STORAGE, store.getState());
+	}
 });
 
-ReactDOM.render(<AppContainer><Root store={store} /></AppContainer>, rootElement);
+ReactDOM.render(
+	<AppContainer>
+		<Root store={store} />
+	</AppContainer>,
+	rootElement
+);
 
 if (module.hot) {
-  module.hot.accept('./containers/root.jsx', () => {
-    const NextRoot = require('./containers/root.jsx').default;
-    ReactDOM.render(<AppContainer><NextRoot store={store} /></AppContainer>, rootElement);
-  });
+	module.hot.accept('./containers/root.jsx', () => {
+		const NextRoot = require('./containers/root.jsx').default;
+		ReactDOM.render(
+			<AppContainer>
+				<NextRoot store={store} />
+			</AppContainer>,
+			rootElement
+		);
+	});
 }

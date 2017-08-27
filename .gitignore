@@ -40,3 +40,5 @@ jspm_packages
 .env
 
 public/build/
+
+.vscode
