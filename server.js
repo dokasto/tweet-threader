@@ -4,10 +4,8 @@
 
 require('dotenv').config();
 
-const foo = {};
-foo.bar = 2;
-
 const express = require('express');
+const session = require('express-session');
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -19,13 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('compression')());
 
-app.use(
-	require('express-session')({
-		secret: process.env.APP_SECRET,
-		resave: false,
-		saveUninitialized: false,
-	}),
-);
+app.use(session({ secret: process.env.APP_SECRET, resave: false, saveUninitialized: false }));
 
 app.use(express.static('public'));
 

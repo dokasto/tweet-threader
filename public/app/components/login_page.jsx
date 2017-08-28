@@ -18,8 +18,6 @@ const LoginPage = () =>
 				<span className="copy">
 					<strong>Notes for Nerds</strong> <br />
 					This project was created using NodeJS(back-end), React-Redux(frontend) and deployed via Heroku.
-					<br />
-					It was developed and designed by <a href="http://udo.com.ng">Udo Nkwocha</a>
 				</span>
 			</section>
 		</main>
