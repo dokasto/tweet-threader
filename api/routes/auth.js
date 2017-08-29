@@ -1,54 +1,61 @@
-'use strict';
+const passport = require('passport');
+const TwitterStrategy = require('passport-twitter').Strategy;
 
 /**
  * Authenticate using Twitter account
  */
 
-module.exports = (app) => {
+module.exports = app => {
+	const Config = process.env;
+	const Host = Config.NODE_ENV === 'development' ? `${Config.HOST_NAME}:${Config.DEV_PORT}` : Config.HOST_NAME;
 
-  const passport = require('passport');
-  const TwitterStrategy = require('passport-twitter').Strategy;
-  const Config = process.env;
-  const Host = (Config.NODE_ENV === 'development') ? `${Config.HOST_NAME}:${Config.DEV_PORT}` : Config.HOST_NAME;
+	app.use(passport.initialize());
+	app.use(passport.session());
 
-  app.use(passport.initialize());
-  app.use(passport.session());
+	passport.use(
+		new TwitterStrategy(
+			{
+				consumerKey: Config.TWITTER_CONSUMER_KEY,
+				consumerSecret: Config.TWITTER_CONSUMER_SECRET,
+				callbackURL: `${Host}/auth/twitter/callback`
+			},
+			(token, tokenSecret, profile, cb) => {
+				app.set('access_token_key', token);
+				app.set('access_token_secret', tokenSecret);
+				cb(null, { token, tokenSecret, profile });
+			}
+		)
+	);
 
-  passport.use(new TwitterStrategy({
-      consumerKey: Config.TWITTER_CONSUMER_KEY,
-      consumerSecret: Config.TWITTER_CONSUMER_SECRET,
-      callbackURL: Host + '/auth/twitter/callback'
-    },
-    (token, tokenSecret, profile, cb) => {
-      app.set('access_token_key', token);
-      app.set('access_token_secret', tokenSecret);
-      cb(null, profile);
-    }
-  ));
+	passport.serializeUser((user, cb) => {
+		cb(null, user);
+	});
 
-  passport.serializeUser((user, cb) => {
-    cb(null, user);
-  });
+	passport.deserializeUser((obj, cb) => {
+		cb(null, obj);
+	});
 
-  passport.deserializeUser((obj, cb) => {
-    cb(null, obj);
-  });
+	app.get('/auth/twitter', passport.authenticate('twitter'));
 
-  app.get('/auth/twitter', passport.authenticate('twitter'));
+	app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }), (req, res) => {
+		const { token, tokenSecret, profile } = req.user;
 
-  app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }),
-    (req, res) => {
+		const cookieOptions = {
+			httpOnly: true,
+			maxAge: 1000 * 60 * 60 * 24 * 1,
+			encode: String,
+			secure: false,
+			signed: false
+		};
 
-      let buffer = new Buffer(encodeURI(JSON.stringify({
-        photos: req.user.photos,
-        displayName: req.user.displayName,
-        username: req.user.username
-      })));
+		res.cookie(
+			'_userdata',
+			JSON.stringify({ photos: profile.photos, displayName: profile.displayName, username: profile.username }),
+			Object.assign({}, cookieOptions, { httpOnly: false })
+		);
 
-      app.set('twitter-user', buffer.toString('base64'));
+		res.cookie('auth', JSON.stringify({ token, tokenSecret }), cookieOptions);
 
-      res.redirect('/tweet');
-
-    });
-
+		res.redirect('/tweet');
+	});
 };

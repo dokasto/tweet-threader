@@ -1,7 +1,7 @@
 const defaultState = {
 	id: new Date().getTime(),
 	status: 'pending', // posted | failed
-	text: '',
+	text: ''
 };
 
 const form = (state = {}, action) => {
@@ -10,14 +10,14 @@ const form = (state = {}, action) => {
 		return {
 			id: action.id,
 			status: action.status,
-			text: action.text,
+			text: action.text
 		};
 	case 'UPDATE_CONTENT':
 		if (state.id !== action.id) {
 			return state;
 		}
 		return Object.assign({}, state, {
-			text: action.text,
+			text: action.text
 		});
 	default:
 		break;

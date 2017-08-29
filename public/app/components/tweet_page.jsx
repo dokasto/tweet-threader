@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { addForm, removeForm, updateContent, postTweets } from '../actions/form_actions';
 import { success, error, warning, ongoing } from '../actions/notifications';
+
 import Tweet from './tweet.jsx';
 import axios from 'axios';
 import co from 'co';
 
-const Buffer = require('buffer/').Buffer;
+axios.defaults.withCredentials = true;
 
 /**
  * Post tweet
@@ -13,26 +14,27 @@ const Buffer = require('buffer/').Buffer;
  * @param  {integer} inReply  
  * @return {Promise}          
  */
-const postTweet = (status, inReply) => {
-	return axios.post('/status/update', { status, inReply });
+const postTweet = (status, inReply) => axios.post('/status/update', { status, inReply });
+
+/**
+ * Get a cookie by name
+ * @param  {string} name
+ * @return {string}    
+ */
+const getCookie = name => {
+	const data = document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`);
+	return data ? data.pop() : null;
 };
 
-const mapStateToProps = state => {
-	return {
-		forms: state.forms,
-		notifications: state.notifications
-	};
-};
+const mapStateToProps = state => ({
+	forms: state.forms,
+	notifications: state.notifications
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-	let string = document.querySelector('#root').getAttribute('data-user');
+	const cookieString = getCookie('_userdata');
 
-	if (string === 'undefined') {
-		window.location = window.location.protocol + '//' + window.location.hostname;
-	}
-
-	let buffer = new Buffer(string, 'base64');
-	let person = JSON.parse(decodeURI(buffer.toString())); // twitter user
+	const person = cookieString ? JSON.parse(cookieString) : {};
 
 	let hasShared = false;
 
@@ -49,11 +51,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			dispatch(updateContent(id, text));
 		},
 		postTweets: forms => {
-			co(function*() {
+			co(function* asyncCo() {
 				let inReply = null;
 				let response = null;
 				let hasError = false;
-				let emptyFields = forms.filter(form => form.text.length <= 0);
+				const emptyFields = forms.filter(form => form.text.length <= 0);
 
 				if (emptyFields.length > 0) {
 					dispatch(warning('some fields are empty'));
@@ -81,7 +83,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 						if (!hasShared) {
 							dispatch(success('Tweets posted successfully. Help us spread the word :)'));
 
-							let message = 'Hey, I created threads easily using http://tweet-threader.herokuapp.com/. Try it :)';
+							const message = 'Hey, I created threads easily using http://tweet-threader.herokuapp.com/. Try it :)';
 
 							// add extra form
 							dispatch(addForm(message));
