@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -13,6 +14,7 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || process.env.DEV_PORT;
 
 app.set('view engine', 'jade');
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('compression')());
@@ -32,8 +34,7 @@ require('./api/routes/tweet')(app);
 
 app.get('/*', (request, response) => {
 	response.render(`${__dirname}/public/index.jade`, {
-		env: process.env.NODE_ENV,
-		user: app.get('twitter-user'),
+		env: process.env.NODE_ENV
 	});
 });
 
